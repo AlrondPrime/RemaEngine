@@ -6,12 +6,12 @@ extern remaEngine::Engine* remaEngine::CreateApplication();
 
 int main(int argc, char** argv)
 {
-	remaEngine::Log::Init();
-	REMA_CORE_INFO("Engine has been started");
+    remaEngine::Log::Init();
+    REMA_CORE_INFO("Engine has been started");
 
-	auto app = remaEngine::CreateApplication();
-	app->Run();
-	delete app;
+    auto app = remaEngine::CreateApplication();
+    app->Run();
+    delete app;
 }
 
 #endif // !REMA_PLATFORM_WINDOWS
