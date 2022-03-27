@@ -10,7 +10,7 @@ public:
 
 	~NovelGame()
 	{
-
+		REMA_INFO("Game has been shutdown");
 	}
 };
 

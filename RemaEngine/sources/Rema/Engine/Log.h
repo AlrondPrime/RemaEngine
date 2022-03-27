@@ -1,7 +1,7 @@
 #ifndef REMA_LOG_H
 #define REMA_LOG_H
 
-#include "Core.h"
+#include "Rema/Engine/Core.h"
 
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"

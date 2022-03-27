@@ -65,14 +65,17 @@ project "RemaEngine"
 
     filter "configurations:Debug"
         defines "REMA_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
     
     filter "configurations:Release"
         defines "REMA_RELEASE"
+        buildoptions "/MD"
         optimize "On"
     
     filter "configurations:Dist"
         defines "REMA_DIST"
+        buildoptions "/MD"
         optimize "On"
 
 project "NovelGame"
@@ -110,20 +113,18 @@ project "NovelGame"
         {
             "REMA_PLATFORM_WINDOWS"
         }
-        
-        postbuildcommands
-        {
-           --("{COPYFILE} ../bin/" .. outputdir .. "/RemaEngine/RemaEngine.dll ../bin/" .. outputdir .. "/%{prj.name}/")
-        }
 
     filter "configurations:Debug"
         defines "REMA_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
     
     filter "configurations:Release"
         defines "REMA_RELEASE"
+        buildoptions "/MD"
         optimize "On"
     
     filter "configurations:Dist"
         defines "REMA_DIST"
+        buildoptions "/MD"
         optimize "On"

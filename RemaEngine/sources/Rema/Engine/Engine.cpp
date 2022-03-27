@@ -1,5 +1,5 @@
 #include "remapch.h"
-#include "Engine.h"
+#include "Rema/Engine/Engine.h"
 
 #include <GLFW/glfw3.h>
 
@@ -15,7 +15,17 @@ namespace remaEngine
 
     Engine::~Engine()
     {
+        REMA_CORE_INFO("Engine has been shutdown");
+    }
 
+    void Engine::PushLayer(Layer* layer)
+    {
+        m_LayerStack.PushLayer(layer);
+    }
+
+    void Engine::PushOverlay(Layer* overlay)
+    {
+        m_LayerStack.PushOverlay(overlay);
     }
 
     void Engine::OnAction(Action& act)
@@ -24,6 +34,13 @@ namespace remaEngine
         dispatcher.Dispatch<WindowCloseAction>(BIND_ACTION_FUNCTION(Engine::OnWindowClosed));
 
         REMA_CORE_TRACE("{0}", act);
+
+        for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); ) {
+            (*--it)->OnAction(act);
+            if (act.Handled) {
+                break;
+            }
+        }
     }
 
     // Runs rema game loop
@@ -33,6 +50,11 @@ namespace remaEngine
         {
             glClearColor(1, 0, 1, 1);
             glClear(GL_COLOR_BUFFER_BIT);
+
+            for (Layer* layer : m_LayerStack) {
+                layer->OnUpdate();
+            }
+
             m_Window->OnUpdate();
         }
     }
