@@ -62,7 +62,7 @@ namespace remaEngine
 		{
 			if (m_Action.GetActionType() == T::GetStaticType())
 			{
-				m_Action.m_Handled = function(*(*T) & m_Action);
+				m_Action.m_Handled |= function(static_cast<T&>(m_Action));
 				return true;
 			}
 			return false;
