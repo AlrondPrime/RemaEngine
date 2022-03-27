@@ -1,0 +1,6 @@
+[submodule "RemaEngine/thirdparty/spdlog"]
+	path = RemaEngine/thirdparty/spdlog
+	url = https://github.com/gabime/spdlog.git
+[submodule "RemaEngine/thirdparty/GLFW"]
+	path = RemaEngine/thirdparty/GLFW
+	url = https://github.com/Derivative-studio/glfw.git
