@@ -1,7 +1,7 @@
 #include "remapch.h"
 #include "Rema/Engine/Engine.h"
 
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 namespace remaEngine
 {
