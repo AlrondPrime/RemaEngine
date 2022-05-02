@@ -1,3 +1,5 @@
+include "Dependencies.lua"
+
 workspace "RemaEngine"
     architecture "x64"
 
@@ -10,12 +12,12 @@ workspace "RemaEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
-IncludeDir = {}
-IncludeDir["GLFW"] = "RemaEngine/thirdparty/GLFW/include"
-IncludeDir["Glad"] = "RemaEngine/thirdparty/Glad/include"
-
-include "RemaEngine/thirdparty/GLFW"
-include "RemaEngine/thirdparty/Glad"
+group "Dependencies"
+    include "RemaEngine/thirdparty/ogg"
+    include "RemaEngine/thirdparty/vorbis"
+    include "RemaEngine/thirdparty/GLFW"
+    include "RemaEngine/thirdparty/Glad"
+group ""
 
 project "RemaEngine"
     location "RemaEngine"
@@ -38,17 +40,26 @@ project "RemaEngine"
     includedirs
     {
         "%{prj.name}/sources",
-        "%{prj.name}/thirdparty/spdlog/include",
 
         "%{IncludeDir.GLFW}",
-        "%{IncludeDir.Glad}"
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.spdlog}",
+        "%{IncludeDir.freealut}",
+        "%{IncludeDir.openal_soft}",
+        "%{IncludeDir.ogg}",
+        "%{IncludeDir.vorbis}",
     }
 
     links
     {
         "GLFW",
         "Glad",
-        "opengl32.lib"
+        "opengl32.lib",
+
+        "openal32",
+        "alut",
+        "ogg",
+        "vorbis"
     }
 
     filter "system:windows"
@@ -101,7 +112,7 @@ project "NovelGame"
 
     includedirs
     {
-        "RemaEngine/thirdparty/spdlog/include",
+        "%{IncludeDir.spdlog}",
         "RemaEngine/sources"
     }
 

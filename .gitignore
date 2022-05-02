@@ -10,3 +10,4 @@ int/
 *.sln
 *.vcxproj
 *.filters
+commit.txt
